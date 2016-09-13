@@ -3,7 +3,31 @@
 const int PIXEL_PIN = 6;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
-char rxChar= 0;
+int  rxByte= 0;
+
+// Ayyo Sprite
+uint8_t spriteSurprise[][3] = {   
+                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, 
+                            {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, 
+                            {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, 
+                            {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 0, 0}, {34, 200, 34}, {34, 200, 34}, {34, 200, 34}, {34, 200, 34}, {34, 200, 34}, {34, 200, 34}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                       };
+
+// Checki Sprite
+uint8_t spriteChecki[][3] = {   
+                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 255, 0}, {0, 255, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 255, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 255, 0}, {0, 255, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, {0, 0, 0}, {0, 255, 0}, 
+                            {0, 0, 0}, {0, 0, 255}, {0, 0, 255}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, 
+                            {0, 0, 0}, {0, 0, 255}, {0, 0, 255}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255},
+                            {0, 0, 0}, {0, 0, 255}, {0, 0, 255}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255},
+                            {0, 0, 0}, {0, 0, 255}, {0, 0, 255}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255}, {0, 0, 0}, {0, 0, 255},
+                       };
 
 // NG Sprite
 uint8_t spriteNG[][3] = {   
@@ -56,8 +80,8 @@ uint8_t spriteSmiley[][3] = {
 // Ayyo Sprite
 uint8_t spriteAyyo[][3] = {   
                             {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
-                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
                             {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, 
+                            {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
                             {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, 
                             {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {34, 200, 255}, {34, 200, 255}, {0, 0, 0}, 
                             {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
@@ -124,14 +148,13 @@ void loop()
   
   if (Serial.available() > 0)
   {          // Check receive buffer.
-      rxChar = Serial.read();            // Save character received. 
+      rxByte = Serial.read();            // Save character received. 
       Serial.flush();                    // Clear receive buffer.
-    
-    switch (rxChar) {
+
+    switch (rxByte) {
       
-      case 'a':
-      case 'A':                          // If received 'a' or 'A':
-        Serial.print("Received Command A");
+      case 111:                          // If received 111
+        Serial.print("Saving...");
         
         for(uint8_t i = 0; i < 80; i++)
         {
@@ -144,39 +167,36 @@ void loop()
         delay(1000);
       break;
 
-      case 'b':
-      case 'B':                          // If received 'b' or 'B':
-        Serial.print("Received Command B");
+      case 112:                          // If received 112
+        Serial.print("Thats no good");
         
         for(uint8_t i = 0; i < 80; i++)
         {
-          int r = spriteSave[i][0];
-          int g = spriteSave[i][1];
-          int b = spriteSave[i][2]; 
+          int r = spriteNG[i][0];
+          int g = spriteNG[i][1];
+          int b = spriteNG[i][2]; 
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
         delay(1000);
       break;
 
-      case 'c':
-      case 'C':                          // If received 'c' or 'C':
-        Serial.print("Received Command C");
+      case 113:                          // If received 113
+        Serial.print("TEST");
         
         for(uint8_t i = 0; i < 80; i++)
         {
-          int r = spriteSave[i][0];
-          int g = spriteSave[i][1];
-          int b = spriteSave[i][2]; 
+          int r = spriteTest[i][0];
+          int g = spriteTest[i][1];
+          int b = spriteTest[i][2]; 
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
         delay(1000);
       break;
 
-      case 'd':
-      case 'D':                          // If received 'd' or 'D':
-        Serial.print("Received Command D");
+      case 114:                          // If received 114
+        Serial.print("Nope");
         
         for(uint8_t i = 0; i < 80; i++)
         {
@@ -189,15 +209,13 @@ void loop()
         delay(1000);
       break;
 
-      case 'e':
-      case 'E':                          // If received 'e' or 'E':
-        Serial.print("Received Command E");      
-        theaterChaseRainbow(50);
+      case 115:                          // If received 115
+        Serial.print("oh hey flashy");      
+        theaterChase(strip.Color(127, 127, 127), 50); // White
       break;
 
-      case 'f':
-      case 'F':                          // If received 'f' or 'F':
-        Serial.print("Received Command F");      
+      case 116:                          // If received 116
+        Serial.print("Weh");      
         
         for(uint8_t i = 0; i < 80; i++)
         {
@@ -210,9 +228,8 @@ void loop()
         delay(1000);
       break;
 
-      case 'g':
-      case 'G':                          // If received 'g' or 'G':
-        Serial.print("Received Command G");      
+      case 117:                          // If received 117
+        Serial.print("Mad AF");      
         
         for(uint8_t i = 0; i < 80; i++)
         {
@@ -225,9 +242,8 @@ void loop()
         delay(1000);
       break;
 
-      case 'h':
-      case 'H':                          // If received 'h' or 'H':
-        Serial.print("Received Command H");      
+      case 118:                          // If received 118
+        Serial.print("Smileys in ur Email");      
         
         for(uint8_t i = 0; i < 80; i++)
         {
@@ -239,16 +255,128 @@ void loop()
         strip.show();
         delay(1000);
       break;
+
+      case 119:                          // If received 119
+        Serial.print("Hella Red");      
+        theaterChase(strip.Color(127, 0, 0), 20); // Red
+      break;
+      
+      case 120:                          // If received 120
+        Serial.print("Hella Green");      
+        theaterChase(strip.Color(0, 127, 0), 20); // Green
+      break;
+      
+      case 121:                          // If received 121
+        Serial.print("Hella Blue");      
+        theaterChase(strip.Color(0, 0, 127), 20); // Blue
+      break;
+      
+      case 122:                          // If received 122
+        Serial.print("WOW A RAINBOW");      
+        rainbow(20);
+      break;
+          
+      case 123:                          // If received 123
+        Serial.print("DOUBLE RAINBOW");      
+        rainbowCycle(20);
+      break;
+      
+      case 124:                          // If received 124
+        Serial.print("ALL THE WAY ACROSS THE SKY");      
+        theaterChaseRainbow(20);
+      break;
+
+      case 125:                          // If received 125
+        Serial.print(" O K . ");         
+        for(uint8_t i = 0; i < 80; i++)
+        {     
+          int r = spriteChecki[i][0];
+          int g = spriteChecki[i][1];
+          int b = spriteChecki[i][2]; 
+          strip.setPixelColor(i, strip.Color(r, g, b));
+        }   
+        strip.show();
+        delay(1000);        
+      break;
+
+      case 126:                          // If received 126
+        Serial.print("HECK.");            
+        for(uint8_t i = 0; i < 80; i++)
+        {  
+          int r = spriteSurprise[i][0];
+          int g = spriteSurprise[i][1];
+          int b = spriteSurprise[i][2]; 
+          strip.setPixelColor(i, strip.Color(r, g, b));
+        }   
+        strip.show();
+        delay(1000);        
+      break;
       
       default:                           
-        Serial.print("'");
-        Serial.print((char)rxChar);
-        Serial.println("' is not a command!");
+        Serial.println("not a command, dummy!");
       break;
     }
   }
 }
 
+
+
+
+
+
+
+
+// Fill the dots one after the other with a color
+void colorWipe(uint32_t c, uint8_t wait) {
+  for(uint16_t i=0; i<strip.numPixels(); i++) {
+    strip.setPixelColor(i, c);
+    strip.show();
+    delay(wait);
+  }
+}
+
+void rainbow(uint8_t wait) {
+  uint16_t i, j;
+
+  for(j=0; j<256; j++) {
+    for(i=0; i<strip.numPixels(); i++) {
+      strip.setPixelColor(i, Wheel((i+j) & 255));
+    }
+    strip.show();
+    delay(wait);
+  }
+}
+
+// Slightly different, this makes the rainbow equally distributed throughout
+void rainbowCycle(uint8_t wait) {
+  uint16_t i, j;
+
+  for(j=0; j<256*5; j++) { // 5 cycles of all colors on wheel
+    for(i=0; i< strip.numPixels(); i++) {
+      strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
+    }
+    strip.show();
+    delay(wait);
+  }
+}
+
+//Theatre-style crawling lights.
+void theaterChase(uint32_t c, uint8_t wait) {
+  for (int j=0; j<10; j++) {  //do 10 cycles of chasing
+    for (int q=0; q < 3; q++) {
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, c);    //turn every third pixel on
+      }
+      strip.show();
+
+      delay(wait);
+
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, 0);        //turn every third pixel off
+      }
+    }
+  }
+}
 
 //Theatre-style crawling lights with rainbow effect
 void theaterChaseRainbow(uint8_t wait) {
