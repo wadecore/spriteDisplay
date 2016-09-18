@@ -164,7 +164,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 112:                          // If received 112
@@ -178,7 +178,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 113:                          // If received 113
@@ -192,7 +192,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 114:                          // If received 114
@@ -206,7 +206,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 115:                          // If received 115
@@ -225,7 +225,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 117:                          // If received 117
@@ -239,7 +239,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 118:                          // If received 118
@@ -253,7 +253,7 @@ void loop()
           strip.setPixelColor(i, strip.Color(r, g, b));
         }   
         strip.show();
-        delay(1000);
+        delay(2000);
       break;
 
       case 119:                          // If received 119
